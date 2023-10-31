@@ -7,8 +7,8 @@ module Main
         def handle(req, res)
           message = req.params[:message]
           user = req.params[:user]
-          
-          data = JSON.dump({ user: user, message: message})
+
+          data = JSON.dump({user:user, message:message})
           Iodine.publish(req.params[:id], data)
 
           res[:room] = req.params[:id]

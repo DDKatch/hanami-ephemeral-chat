@@ -4,22 +4,28 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.ruby
+      # tag: hanami-ephemeral-chat
+    image: hanami-ruby:latest
+    platform: linux/amd64
     volumes:
       - .:/app
-      - bundle_path:/usr/local/bundle
-    command: script/puma
+      - vendor:/app/vendor
+    command: ["script/puma"]
     env_file: ".env"
     ports:
       - 2300:2300
-    depends_on:
-      - assets
-    links:
-      - assets
+    # depends_on:
+    #   - assets
+    # links:
+    #   - assets
   assets:
-    image: node:alpine
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    image: hanami-node:latest
+    platform: linux/amd64
     env_file: ".env"
-    working_dir: /app
     volumes:
       - .:/app
       - node_modules:/app/node_modules
@@ -27,5 +33,5 @@ services:
       - "8080"
     command: "npm start"
 volumes:
-  bundle_path:
+  vendor:
   node_modules:

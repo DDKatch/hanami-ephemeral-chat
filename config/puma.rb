@@ -17,7 +17,7 @@ threads min_threads_count, max_threads_count
 preload_app!
 
 # Use the default rackup (config.ru) command
-rackup DefaultRackup
+rackup Puma::Configuration::DEFAULTS[:rackup]
 
 # Specify the port that Puma will listen on
 port ENV.fetch("PORT") { 2300 }

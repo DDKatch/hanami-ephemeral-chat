@@ -2,6 +2,9 @@
 
 require "hanami"
 
+require "iodine"
+require 'hanami/utils/escape'
+
 module EphemeralChat
   class Application < Hanami::Application
     config.sessions = :cookie, {

@@ -5,6 +5,9 @@ source "https://rubygems.org/"
 # Core gems
 gem "rake", "~> 13.0"
 
+# Application server
+gem "puma"
+
 # Application framework
 gem "hanami", "~> 2.0.0.alpha"
 gem "hanami-cli", "~> 2.0.0.alpha"
