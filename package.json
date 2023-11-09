@@ -16,7 +16,7 @@
     "build": "TS_NODE_PROJECT=.assets/tsconfig.webpack.json NODE_ENV=production ts-node .assets/scripts/build production",
     "format": "prettier --write \"{.assets,app,slices}/**/*.{ts,tsx,js,jsx}\"",
     "lint": "eslint --ext js,jsx,ts,tsx .",
-    "start": "PORT=8080 concurrently \"TS_NODE_PROJECT=.assets/tsconfig.webpack.json ts-node .assets/scripts/build development\" \"serve -C .assets/tmp\"",
+    "start": "PORT=8080 concurrently \"TS_NODE_PROJECT=.assets/tsconfig.webpack.json ts-node .assets/scripts/build.ts development\" \"serve -C .assets/tmp\" --kill-others --prefix-colors=yellow.dim,cyan.dim",
     "test": "jest",
     "build-production": "yarn run build",
     "heroku-postbuild": "yarn run build"

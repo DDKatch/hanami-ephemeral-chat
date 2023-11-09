@@ -14,5 +14,7 @@ COPY . .
 
 RUN bundle install
 
+RUN bin/hanami db setup
+
 # COPY script script
 # COPY config config

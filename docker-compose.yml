@@ -1,24 +1,22 @@
-version: "3"
+version: "3.8"
 
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile.ruby
-      # tag: hanami-ephemeral-chat
     image: hanami-ruby:latest
     platform: linux/amd64
     volumes:
       - .:/app
-      - vendor:/app/vendor
-    command: ["script/puma"]
+    command: "bundle exec iodine -v"
     env_file: ".env"
     ports:
-      - 2300:2300
-    # depends_on:
-    #   - assets
-    # links:
-    #   - assets
+      - 3000:3000
+    depends_on:
+      - assets
+    links:
+      - assets
   assets:
     build:
       context: .
@@ -27,11 +25,7 @@ services:
     platform: linux/amd64
     env_file: ".env"
     volumes:
-      - .:/app
-      - node_modules:/app/node_modules
-    expose:
-      - "8080"
-    command: "npm start"
-volumes:
-  vendor:
-  node_modules:
+      - ./slices:/app/slices
+    ports:
+      - "8080:8080"
+    command: "npm run start"

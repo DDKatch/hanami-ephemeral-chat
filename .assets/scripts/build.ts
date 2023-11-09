@@ -18,6 +18,8 @@ That's all. You won't even find a dev server in here!
 const mode = process.argv[2]
 const bundleConfig = config(mode) as webpack.Configuration
 
+console.log("WEBPACK BUNDLE PATH OUTPUT =", bundleConfig.output?.path)
+
 if (bundleConfig.output?.path != null) {
   rimraf(
     path.resolve(bundleConfig.output.path, "./*"),
