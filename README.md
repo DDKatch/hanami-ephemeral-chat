@@ -8,14 +8,12 @@ This is an experiment to create a simple chat application using [Hanami](https:/
 ## How to run
 
 ``` sh
-bundle install
-yarn
 cp .env-sample .env
-gem install foreman
-foreman start -f Procfile.dev
+docker-compose build
+docker-compose up
 ```
 
-Now you can go to http://localhost:5000/
+Now you can go to http://localhost:3000/
 
 ## The WHYs
 
@@ -88,7 +86,7 @@ module EphemeralChat
     attr_reader :room_name
 
     def self.handle(env)
-      if env['rack.upgrade?'.freeze] == :websocket 
+      if env['rack.upgrade?'.freeze] == :websocket
         req = Rack::Request.new(env)
         env['rack.upgrade'.freeze] = new(req.params["room"], req.params["user"])
         [0,{}, []]
@@ -114,7 +112,7 @@ module EphemeralChat
       data = JSON.dump({ user: @user, message: message})
       client.publish(room_name, data)
     end
-    
+
     def on_close(client)
       client.publish(room_name, %[{"user": "", "system": true, "message": "#{@user} has left"}])
     end
@@ -181,7 +179,7 @@ end
 def handle(req, res)
   message = req.params[:message]
   user = req.params[:user]
-  
+
   data = JSON.dump({ user: user, message: message})
   Iodine.publish(req.params[:id], data)
 
