@@ -10,7 +10,7 @@ services:
     volumes:
       - .:/app
     command: "bundle exec iodine -v"
-    env_file: ".env"
+    env_file: ".env.dev"
     ports:
       - 3000:3000
     depends_on:
@@ -23,7 +23,7 @@ services:
       dockerfile: Dockerfile.node
     image: hanami-node:latest
     platform: linux/amd64
-    env_file: ".env"
+    env_file: ".env.dev"
     volumes:
       - ./slices:/app/slices
     ports:
