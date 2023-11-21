@@ -1,6 +1,8 @@
 
 # Hanami Ephemeral Chat
 
+origin repository is a source code for this post https://katafrakt.me/2022/06/15/building-chat-hanami-hotwire/
+
 ![](https://user-images.githubusercontent.com/119904/170112436-134e8778-e407-473c-a737-d8377413af32.png)
 
 This is an experiment to create a simple chat application using [Hanami](https://github.com/hanami/hanami) and [Hotwire](https://hotwired.dev/) on top of [Iodine](https://github.com/boazsegev/iodine) server.  It does not use any persistence - messages are delivered to all users connected to current room, but are not stored anywhere and cannot be accessed later.
